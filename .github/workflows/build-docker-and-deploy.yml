@@ -12,17 +12,14 @@ jobs:
     steps:
     - 
       uses: actions/checkout@v3
-    - 
-      name: Getting version form package
-      run: |
-        apt update && apt install -y jq
-        export VERSION=`jq -r ".version" < ./package.json`
+    - name: Get version from package.json
+      run: echo "::set-env name=PACKAGE_VERSION::$(node -p "require('./package.json').version")"
     - 
       name: Set up Docker
       uses: docker-practice/actions-setup-docker@v1
     - 
-      name: Build Docker Image
-      run: docker build -t edumgt-nt:$VERSION .
+      name: Build Docker Imageenv
+      run: docker build -t edumgt-nt:${{ env.PACKAGE_VERSION }} .
     - 
       name: Log in to SSH Host
       uses: appleboy/ssh-action@master
