@@ -22,7 +22,7 @@ jobs:
       uses: docker-practice/actions-setup-docker@v1
     - 
       name: Build Docker Image
-      run: docker build -t edumgt-nt .t
+      run: docker build -t edumgt-nt:$VERSION .
     - 
       name: Log in to SSH Host
       uses: appleboy/ssh-action@master
