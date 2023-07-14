@@ -20,7 +20,7 @@ COPY . .
 
 ENV NEXT_TELEMETRY_DISABLED 1
 
-COPY .env.local .env
+COPY .env.production .env
 
 RUN npm run build
 
