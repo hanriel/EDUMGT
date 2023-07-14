@@ -90,14 +90,14 @@ export default function SignUpPage() {
             </div>
             <UserSignUpForm />
             <p className="px-2 text-center text-sm text-muted-foreground">
-              Нажимая "Продолжить", вы соглашаетесь с{" "}
+              Нажимая &quot;Продолжить&quot;, вы соглашаетесь с
               <Link
                 href="/terms"
                 className="underline underline-offset-4 hover:text-primary"
               >
                 Правилами использования
-              </Link>{" "}
-              и{" "}
+              </Link>
+              и
               <Link
                 href="/privacy"
                 className="underline underline-offset-4 hover:text-primary"
