@@ -10,24 +10,25 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - 
-      uses: actions/checkout@v3
+    - uses: actions/checkout@v3
+    
     - name: Get version from package.json
       run: echo "PACKAGE_VERSION=$(node -p "require('./package.json').version")" >> $GITHUB_ENV
-    - 
-      name: Set up Docker
+      
+    - name: Set up Docker
       uses: docker-practice/actions-setup-docker@v1
-    - 
-      name: Build Docker Imageenv
+      
+    - name: Build Docker Imageenv
       run: docker build -t edumgt-nt:${{ env.PACKAGE_VERSION }} .
-    - 
-      name: Log in to SSH Host
+      
+    - name: Log in to SSH Host
       uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.STAGE_SERVER_IP }}
         username: ${{ secrets.STAGE_SERVER_USER }}
         key: ${{ secrets.STAGE_ID_RSA }}
-    - 
-      name: Deploy Docker Container
+        port: ${{ secrets.STAGE_SERVER_PORT }}
+        
+    - name: Deploy Docker Container
       run: |
         docker save edumgt-nt | ssh ${{ secrets.STAGE_SERVER_USER }}@${{ secrets.STAGE_SERVER_IP }} -p ${{ secrets.STAGE_SERVER_PORT }} 'docker load'
