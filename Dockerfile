@@ -20,8 +20,6 @@ COPY . .
 
 ENV NEXT_TELEMETRY_DISABLED 1
 
-COPY .env.production .env
-
 RUN npm run build
 
 FROM base AS runner
