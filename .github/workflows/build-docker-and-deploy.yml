@@ -1,0 +1,22 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+  
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    # get node app version from package.json for use in tagging docker image
+    - name: Getting version form package
+      run: |
+        apk update && apk add jq
+        export VERSION=`jq -r ".version" < ./package.json`
+        docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+        docker build -t $CI_REGISTRY_IMAGE:$VERSION -t $CI_REGISTRY_IMAGE:latest .
+        docker push $CI_REGISTRY_IMAGE:$VERSION
+        docker push $CI_REGISTRY_IMAGE:latest
