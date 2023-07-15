@@ -21,13 +21,13 @@ jobs:
     - name: Build Docker Image
       run: docker build -t edumgt-nt:${{ env.PACKAGE_VERSION }} .
    
-    - name: Install SSH Key
-      uses: shimataro/ssh-key-action@v2
-      with:
-        key: ${{ secrets.SSH_KEY }}
-    - name: Adding Known Hosts
-      run: ssh-keyscan -H ${{ secrets.STAGE_SERVER_IP }}:${{ secrets.STAGE_SERVER_PORT }}{% endraw%} >> ~/.ssh/known_hosts
+    - name: Setup key
+      run: |
+        set -eu
+        mkdir "$HOME/.ssh"
+        echo "${{ secrets.STAGE_ID_RSA }}" > "$HOME/.ssh/key"
+        chmod 600 "$HOME/.ssh/key"
                   
     - name: Deploy Docker Container
       run: |
-        docker save edumgt-nt | bzip2 | pv | ssh ${{ secrets.STAGE_SERVER_USER }}@SSH_HOST: ${{ secrets.STAGE_SERVER_IP }} -p SSH_PORT: ${{ secrets.STAGE_SERVER_PORT }} 'bunzip2 | docker load'
+        docker save edumgt-nt | bzip2 | pv | ssh -i $HOME/.ssh/key -o StrictHostKeyChecking=no ${{ secrets.STAGE_SERVER_USER }}@SSH_HOST: ${{ secrets.STAGE_SERVER_IP }} -p SSH_PORT: ${{ secrets.STAGE_SERVER_PORT }} 'bunzip2 | docker load'
