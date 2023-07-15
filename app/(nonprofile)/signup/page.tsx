@@ -95,9 +95,10 @@ export default function SignUpPage() {
                 href="/terms"
                 className="underline underline-offset-4 hover:text-primary"
               >
+                {" "}
                 Правилами использования
               </Link>
-              и
+              {" "}и{" "}
               <Link
                 href="/privacy"
                 className="underline underline-offset-4 hover:text-primary"
