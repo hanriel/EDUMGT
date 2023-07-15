@@ -54,7 +54,7 @@ export function UserNav() {
           <DropdownMenuItem>Новая команда</DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={()=> signOut({callbackUrl: "/"})}>
+        <DropdownMenuItem onClick={()=> signOut()}>
           Выход
           <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
         </DropdownMenuItem>

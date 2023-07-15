@@ -5,6 +5,9 @@ import Link from "next/link"
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
 import { UserSignInForm } from "@/components/user-signin-form"
+import { Badge } from "@/components/ui/badge";
+
+const { version } = require('@/package.json');
 
 export const metadata: Metadata = {
   title: "Авторизация",
@@ -50,7 +53,7 @@ export default function SignInPage() {
               height={64}
               alt="Logo "
             />
-            EDUMGT
+            EDUMGT<Badge variant="outline" className="text-muted-foreground ml-2 ">{version}</Badge>
           </div>
           <div className="relative z-20 mt-auto">
             <blockquote className="space-y-2">
