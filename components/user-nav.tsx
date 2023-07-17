@@ -15,7 +15,7 @@ import {
 
 import { useSession, signOut } from "next-auth/react";
 
-export function UserNav() {
+const UserNav = () => {
   const session = useSession();
 
   console.log(session);
@@ -25,7 +25,10 @@ export function UserNav() {
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" className="relative h-8 w-8 rounded-full">
           <Avatar className="h-8 w-8">
-            <AvatarImage src={session.data?.user?.image || "/avatars/01.png"} alt="@shadcn" />
+            <AvatarImage
+              src={session.data?.user?.image || "/avatars/01.png"}
+              alt="@shadcn"
+            />
             <AvatarFallback>SC</AvatarFallback>
           </Avatar>
         </Button>
@@ -54,11 +57,13 @@ export function UserNav() {
           <DropdownMenuItem>Новая команда</DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={()=> signOut()}>
+        <DropdownMenuItem onClick={() => signOut()}>
           Выход
           <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );
-}
+};
+
+export { UserNav };

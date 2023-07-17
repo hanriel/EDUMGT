@@ -81,7 +81,7 @@ export default function Dash() {
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">12.2%</div>
-                <p className="text-xs text-muted-foreground">+19% за месяц</p>
+                <p className="text-xs text-muted-foreground">+10% за месяц</p>
               </CardContent>
             </Card>
             <Card>
