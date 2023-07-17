@@ -12,7 +12,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { faVk, faGithub } from "@fortawesome/free-brands-svg-icons";
+import {
+  faVk,
+  faGithub,
+  faYandexInternational,
+} from "@fortawesome/free-brands-svg-icons";
 
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -21,7 +25,7 @@ export function UserSignInForm({ className, ...props }: UserAuthFormProps) {
 
   const searchParams = useSearchParams();
 
-  const callbackUrl = searchParams.get("callbackUrl") || "/desk";
+  const callbackUrl = searchParams.get("callbackUrl") || "/";
 
   async function onSubmit(event: React.SyntheticEvent) {
     event.preventDefault();
@@ -78,6 +82,23 @@ export function UserSignInForm({ className, ...props }: UserAuthFormProps) {
           <FontAwesomeIcon icon={faVk} className="mr-2 h-4 w-4" />
         )}{" "}
         VK ID
+      </Button>
+
+      <Button
+        onClick={() => signIn("yandex", { callbackUrl: callbackUrl })}
+        variant="outline"
+        type="button"
+        disabled={isLoading}
+      >
+        {isLoading ? (
+          <UpdateIcon className="mr-1 h-4 w-4 animate-spin" />
+        ) : (
+          <FontAwesomeIcon
+            icon={faYandexInternational}
+            className="mr-1 h-4 w-4"
+          />
+        )}{" "}
+        Яндекс
       </Button>
 
       <Button
