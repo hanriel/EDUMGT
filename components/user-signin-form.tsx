@@ -6,17 +6,11 @@ import { signIn } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
 
 import { cn } from "@/lib/utils";
-import { UpdateIcon } from "@radix-ui/react-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { UpdateIcon, GitHubLogoIcon } from "@radix-ui/react-icons";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import {
-  faVk,
-  faGithub,
-  faYandexInternational,
-} from "@fortawesome/free-brands-svg-icons";
 
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -79,7 +73,7 @@ export function UserSignInForm({ className, ...props }: UserAuthFormProps) {
         {isLoading ? (
           <UpdateIcon className="mr-2 h-4 w-4 animate-spin" />
         ) : (
-          <FontAwesomeIcon icon={faVk} className="mr-2 h-4 w-4" />
+          <GitHubLogoIcon className="mr-2 h-4 w-4" />
         )}{" "}
         VK ID
       </Button>
@@ -93,10 +87,7 @@ export function UserSignInForm({ className, ...props }: UserAuthFormProps) {
         {isLoading ? (
           <UpdateIcon className="mr-1 h-4 w-4 animate-spin" />
         ) : (
-          <FontAwesomeIcon
-            icon={faYandexInternational}
-            className="mr-1 h-4 w-4"
-          />
+          <GitHubLogoIcon className="mr-1 h-4 w-4" />
         )}{" "}
         Яндекс
       </Button>
@@ -110,7 +101,7 @@ export function UserSignInForm({ className, ...props }: UserAuthFormProps) {
         {isLoading ? (
           <UpdateIcon className="mr-1 h-4 w-4 animate-spin" />
         ) : (
-          <FontAwesomeIcon icon={faGithub} className="mr-1 h-4 w-4" />
+          <GitHubLogoIcon className="mr-1 h-4 w-4" />
         )}{" "}
         Github
       </Button>

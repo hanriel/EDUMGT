@@ -11,13 +11,12 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-import { signOut } from "next-auth/react";
-
 import { authConfig } from "@/configs/auth";
 import { getServerSession } from "next-auth/next";
 import LogoutButton from "./logout-button";
 
 export default async function UserNav () {
+ 
   const session = await getServerSession(authConfig);
 
   return (

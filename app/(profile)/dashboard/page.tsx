@@ -10,14 +10,12 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { CalendarDateRangePicker } from "@/components/date-range-picker";
 import { Overview } from "@/components/overview";
 import { RecentSales } from "@/components/recent-sales";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faLinesLeaning,
-  faLaptopHouse,
-  faH,
-  faMarker,
-} from "@fortawesome/free-solid-svg-icons";
+  HomeIcon,
+  FileTextIcon,
+  BackpackIcon,
+  ArchiveIcon,
+} from "@radix-ui/react-icons";
 
 export default function Dash() {
   return (
@@ -44,10 +42,7 @@ export default function Dash() {
                 <CardTitle className="text-sm font-medium">
                   Полнота заполнения тем уроков
                 </CardTitle>
-                <FontAwesomeIcon
-                  className="h-4 w-4 text-muted-foreground"
-                  icon={faLinesLeaning}
-                />
+                <HomeIcon className="h-4 w-4 text-muted-foreground" />
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">95.8%</div>
@@ -59,10 +54,7 @@ export default function Dash() {
                 <CardTitle className="text-sm font-medium">
                   Полнота заполнения домашних заданий
                 </CardTitle>
-                <FontAwesomeIcon
-                  className="h-4 w-4 text-muted-foreground"
-                  icon={faLaptopHouse}
-                />
+                <HomeIcon className="h-4 w-4 text-muted-foreground" />
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">23.5%</div>
@@ -74,10 +66,7 @@ export default function Dash() {
                 <CardTitle className="text-sm font-medium">
                   Своевременность выставления оценок
                 </CardTitle>
-                <FontAwesomeIcon
-                  className="h-4 w-4 text-muted-foreground"
-                  icon={faMarker}
-                />
+                <HomeIcon className="h-4 w-4 text-muted-foreground" />
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">12.2%</div>
@@ -89,10 +78,7 @@ export default function Dash() {
                 <CardTitle className="text-sm font-medium">
                   Своевременность выставления отметок об отсутсвии
                 </CardTitle>
-                <FontAwesomeIcon
-                  className="h-4 w-4 text-muted-foreground"
-                  icon={faH}
-                />
+                <HomeIcon className="h-4 w-4 text-muted-foreground" />
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">57.3%</div>
