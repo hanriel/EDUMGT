@@ -1,19 +1,15 @@
-"use client"
+"use client";
 
-import * as React from "react"
+import * as React from "react";
 import {
   CaretSortIcon,
   CheckIcon,
   PlusCircledIcon,
-} from "@radix-ui/react-icons"
+} from "@radix-ui/react-icons";
 
-import { cn } from "@/lib/utils"
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "@/components/ui/avatar"
-import { Button } from "@/components/ui/button"
+import { cn } from "@/lib/utils";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
 import {
   Command,
   CommandEmpty,
@@ -22,7 +18,7 @@ import {
   CommandItem,
   CommandList,
   CommandSeparator,
-} from "@/components/ui/command"
+} from "@/components/ui/command";
 import {
   Dialog,
   DialogContent,
@@ -31,25 +27,25 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover"
+} from "@/components/ui/popover";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
+} from "@/components/ui/select";
 
 const groups = [
   {
-    label: "Personal Account",
+    label: "Личный аккаунт",
     teams: [
       {
         label: "Alicia Koch",
@@ -58,32 +54,34 @@ const groups = [
     ],
   },
   {
-    label: "Teams",
+    label: "Организации",
     teams: [
       {
-        label: "Acme Inc.",
-        value: "acme-inc",
+        label: "ГБПОУ ПМК",
+        value: "gbpou-pmk",
       },
       {
-        label: "Monsters Inc.",
-        value: "monsters",
+        label: 'МАОУ "СОШ №24"',
+        value: "sch24perm",
       },
     ],
   },
-]
+];
 
-type Team = (typeof groups)[number]["teams"][number]
+type Team = (typeof groups)[number]["teams"][number];
 
-type PopoverTriggerProps = React.ComponentPropsWithoutRef<typeof PopoverTrigger>
+type PopoverTriggerProps = React.ComponentPropsWithoutRef<
+  typeof PopoverTrigger
+>;
 
 interface TeamSwitcherProps extends PopoverTriggerProps {}
 
 export default function TeamSwitcher({ className }: TeamSwitcherProps) {
-  const [open, setOpen] = React.useState(false)
-  const [showNewTeamDialog, setShowNewTeamDialog] = React.useState(false)
+  const [open, setOpen] = React.useState(false);
+  const [showNewTeamDialog, setShowNewTeamDialog] = React.useState(false);
   const [selectedTeam, setSelectedTeam] = React.useState<Team>(
     groups[0].teams[0]
-  )
+  );
 
   return (
     <Dialog open={showNewTeamDialog} onOpenChange={setShowNewTeamDialog}>
@@ -94,7 +92,7 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
             role="combobox"
             aria-expanded={open}
             aria-label="Select a team"
-            className={cn("w-[200px] justify-between", className)}
+            className={cn("w-[210px] justify-between", className)}
           >
             <Avatar className="mr-2 h-5 w-5">
               <AvatarImage
@@ -110,16 +108,16 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
         <PopoverContent className="w-[200px] p-0">
           <Command>
             <CommandList>
-              <CommandInput placeholder="Search team..." />
-              <CommandEmpty>No team found.</CommandEmpty>
+              <CommandInput placeholder="Найти комнаду..." />
+              <CommandEmpty>Организация не найдена</CommandEmpty>
               {groups.map((group) => (
                 <CommandGroup key={group.label} heading={group.label}>
                   {group.teams.map((team) => (
                     <CommandItem
                       key={team.value}
                       onSelect={() => {
-                        setSelectedTeam(team)
-                        setOpen(false)
+                        setSelectedTeam(team);
+                        setOpen(false);
                       }}
                       className="text-sm"
                     >
@@ -151,12 +149,12 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
                 <DialogTrigger asChild>
                   <CommandItem
                     onSelect={() => {
-                      setOpen(false)
-                      setShowNewTeamDialog(true)
+                      setOpen(false);
+                      setShowNewTeamDialog(true);
                     }}
                   >
                     <PlusCircledIcon className="mr-2 h-5 w-5" />
-                    Create Team
+                    Создать организацию
                   </CommandItem>
                 </DialogTrigger>
               </CommandGroup>
@@ -166,15 +164,15 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
       </Popover>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Create team</DialogTitle>
+          <DialogTitle>Создать организацию</DialogTitle>
           <DialogDescription>
-            Add a new team to manage products and customers.
+            Создайте новую организацию чтобы управлять сотрудниками
           </DialogDescription>
         </DialogHeader>
         <div>
           <div className="space-y-4 py-2 pb-4">
             <div className="space-y-2">
-              <Label htmlFor="name">Team name</Label>
+              <Label htmlFor="name">Название организации</Label>
               <Input id="name" placeholder="Acme Inc." />
             </div>
             <div className="space-y-2">
@@ -185,15 +183,15 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="free">
-                    <span className="font-medium">Free</span> -{" "}
+                    <span className="font-medium">Бесплатный</span> -{" "}
                     <span className="text-muted-foreground">
-                      Trial for two weeks
+                      Пробный на две недели
                     </span>
                   </SelectItem>
                   <SelectItem value="pro">
-                    <span className="font-medium">Pro</span> -{" "}
+                    <span className="font-medium">Расширенный</span> -{" "}
                     <span className="text-muted-foreground">
-                      $9/month per user
+                      20₽/месяц за пользователя
                     </span>
                   </SelectItem>
                 </SelectContent>
@@ -203,11 +201,11 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
         </div>
         <DialogFooter>
           <Button variant="outline" onClick={() => setShowNewTeamDialog(false)}>
-            Cancel
+            Отмена
           </Button>
-          <Button type="submit">Continue</Button>
+          <Button type="submit">Продолжить</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
-  )
+  );
 }

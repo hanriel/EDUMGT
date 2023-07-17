@@ -5,10 +5,6 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import { UserSignUpForm } from "@/components/user-signup-form";
-import { Badge } from "@/components/ui/badge";
-import VersionBage from "@/components/VersionBage";
-
-const { version } = require("@/package.json");
 
 export const metadata: Metadata = {
   title: "Регистрация",
