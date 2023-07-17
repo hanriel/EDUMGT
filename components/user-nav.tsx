@@ -1,5 +1,3 @@
-"use client";
-
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
@@ -13,12 +11,14 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-import { useSession, signOut } from "next-auth/react";
+import { signOut } from "next-auth/react";
 
-const UserNav = () => {
-  const session = useSession();
+import { authConfig } from "@/configs/auth";
+import { getServerSession } from "next-auth/next";
+import LogoutButton from "./logout-button";
 
-  console.log(session);
+export default async function UserNav () {
+  const session = await getServerSession(authConfig);
 
   return (
     <DropdownMenu>
@@ -26,7 +26,7 @@ const UserNav = () => {
         <Button variant="ghost" className="relative h-8 w-8 rounded-full">
           <Avatar className="h-8 w-8">
             <AvatarImage
-              src={session.data?.user?.image || "/avatars/01.png"}
+              src={session?.user?.image || "/avatars/01.png"}
               alt="@shadcn"
             />
             <AvatarFallback>SC</AvatarFallback>
@@ -37,10 +37,10 @@ const UserNav = () => {
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-1">
             <p className="text-sm font-medium leading-none">
-              {session.data?.user?.name}
+              {session?.user?.name}
             </p>
             <p className="text-xs leading-none text-muted-foreground">
-              {session.data?.user?.email}
+              {session?.user?.email}
             </p>
           </div>
         </DropdownMenuLabel>
@@ -57,13 +57,8 @@ const UserNav = () => {
           <DropdownMenuItem>Новая команда</DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={() => signOut()}>
-          Выход
-          <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
-        </DropdownMenuItem>
+        <LogoutButton/>
       </DropdownMenuContent>
     </DropdownMenu>
   );
 };
-
-export { UserNav };
