@@ -2,7 +2,7 @@ import Image from "next/image";
 import { MainNav } from "@/components/main-nav";
 import { Search } from "@/components/search";
 import TeamSwitcher from "@/components/team-switcher";
-import { UserNav } from "@/components/user-nav";
+import UserNav from "@/components/user-nav";
 import { ModeToggle } from "@/components/ModeToggle";
 
 export default function LoginLayout({
@@ -35,7 +35,8 @@ export default function LoginLayout({
     <div className="ml-auto flex items-center space-x-4">
       <Search />
       <ModeToggle />
-      <UserNav />
+      {/* @ts-expect-error Server Component */}
+      <UserNav /> 
     </div>
   </div>
 </div>

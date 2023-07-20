@@ -1,7 +1,6 @@
 import Link from "next/link";
 
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
 import {
   HomeIcon,
   FileTextIcon,
@@ -20,7 +19,7 @@ export function MainNav({
     >
       
       <Link
-        href="/"
+        href="/dashboard"
         className="flex items-center text-sm font-medium transition-colors hover:text-primary"
       ><HomeIcon className="mr-1"/>
         Главная
