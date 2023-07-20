@@ -9,7 +9,8 @@ const nextConfig = {
         pathname: '/get-yapic/**',
       },
     ]
-  }
+  },
+  output: 'standalone',
 }
 
 
