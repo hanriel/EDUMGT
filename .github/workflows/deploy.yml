@@ -21,7 +21,7 @@ jobs:
       uses: docker-practice/actions-setup-docker@v1
       
     - name: Build Docker Image
-      run: docker build -t edumgt-nt:${{ env.PACKAGE_VERSION }} .
+      run: docker build -t edumgt-nt:latest -t edumgt-nt:${{ env.PACKAGE_VERSION }} .
    
     - name: Setup key
       run: |
