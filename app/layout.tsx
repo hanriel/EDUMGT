@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 
 import { Metadata } from "next";
 import { Providers } from "@/components/Providers";
+import { Toaster } from "@/components/ui/toaster"
 
 const inter = Inter({ weight: ["400", "700"], subsets: ["cyrillic"] });
 
@@ -21,6 +22,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <Providers>
           {children}
+          <Toaster />
         </Providers>
       </body>
     </html>

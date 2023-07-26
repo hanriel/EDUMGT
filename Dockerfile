@@ -9,7 +9,7 @@ COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
 RUN \
   if [ -f yarn.lock ]; then yarn --frozen-lockfile; \
   elif [ -f package-lock.json ]; then npm ci; \
-  elif [ -f pnpm-lock.yaml ]; then yarn global add pnpm && pnpm i --frozen-lockfile; \
+  elif [ -f pnpm-lock.yaml ]; then yarn global add pnpm && pnpm i --ignore-scripts --frozen-lockfile; \
   else echo "Lockfile not found." && exit 1; \
   fi
 
@@ -33,8 +33,8 @@ RUN adduser --system --uid 1001 nextjs
 
 COPY --from=builder /app/public ./public
 
-COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
-COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+COPY --from=builder /app/.next/standalone ./
+COPY --from=builder /app/.next/static ./.next/static
 
 USER nextjs
 

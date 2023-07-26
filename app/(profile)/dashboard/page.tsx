@@ -12,9 +12,6 @@ import { Overview } from "@/components/overview";
 import { RecentSales } from "@/components/recent-sales";
 import {
   HomeIcon,
-  FileTextIcon,
-  BackpackIcon,
-  ArchiveIcon,
 } from "@radix-ui/react-icons";
 
 export default function Dash() {

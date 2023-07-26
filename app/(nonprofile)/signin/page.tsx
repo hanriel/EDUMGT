@@ -5,8 +5,6 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import { UserSignInForm } from "@/components/user-signin-form";
-import { Badge } from "@/components/ui/badge";
-import VersionBage from "@/components/VersionBage";
 
 export const metadata: Metadata = {
   title: "Вход",
